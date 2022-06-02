@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Aula3_MVC_Filme.Models.CategoriaModel>
+
+@{
+    ViewData["Title"] = "Inde da Página de categoria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Categorias</h1>
+
+<p>
+    <a asp-action="Create">Novo Registro</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+    </tr>
+    <tbody>
+        @foreach (var categoriaModel in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => categoriaModel.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => categoriaModel.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => categoriaModel.Ativo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@categoriaModel.Id">Editar</a>
+                    @*ToDo: Deletar*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
