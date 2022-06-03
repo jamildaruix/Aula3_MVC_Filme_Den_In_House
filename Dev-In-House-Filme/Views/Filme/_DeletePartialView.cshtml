@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Aula3_MVC_Filme.Models.FilmeCategoriaViewModel>
+
+@{
+    ViewData["Title"] = "Deletar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete Filme com Partial @DateTime.Now</h1>
+<br />
+
+@await Html.PartialAsync("_IndexPartialViewTable", @Model)
+
+
+@*
+<div class="row">
+    <p>
+        Id da Descrição
+        <br />
+        @ViewBag.Id
+    </p>
+
+    <p>
+        Descrição da Categoria
+        <br />
+        @ViewBag.Descricao
+    </p>
+
+    <form asp-action="DeleteRegistro" asp-controller="Filme" asp-route-id="@ViewBag.Id">
+        <input type="submit" value="Deletar registro @ViewBag.Id" />
+    </form>
+</div>*@

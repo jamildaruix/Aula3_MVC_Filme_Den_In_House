@@ -57,7 +57,7 @@ namespace Aula3_MVC_Filme.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CategoriaModel model)
         {
@@ -73,6 +73,32 @@ namespace Aula3_MVC_Filme.Controllers
 
             return RedirectToAction("Index");
 
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id, string descricao)
+        {
+            ViewBag.Id = id;
+            ViewBag.Descricao = descricao;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteRegistro(int id)
+        {
+            using var contextLocal = context.CreateDbContext();
+            var categoriaModel = await contextLocal.Categorias.Where(w => w.Id == id).FirstOrDefaultAsync();
+
+            if (categoriaModel == null)
+            {
+                return NotFound();
+            }
+
+            contextLocal.Categorias.Remove(categoriaModel);
+            await contextLocal.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

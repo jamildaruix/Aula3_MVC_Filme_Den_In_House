@@ -14,7 +14,7 @@ namespace Aula3_MVC_Filme.Models
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
 
-        [ForeignKey("FK_Filme_Categoria")]
-        public CategoriaModel Categoria { get; set; }
+        [ForeignKey("CategoriaId")]
+        public virtual CategoriaModel Categoria { get; set; }
     }
 }

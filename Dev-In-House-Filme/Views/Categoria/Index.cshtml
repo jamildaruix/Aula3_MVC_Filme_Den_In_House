@@ -38,7 +38,11 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@categoriaModel.Id">Editar</a>
-                    @*ToDo: Deletar*@
+                    @Html.ActionLink("Delete", 
+                                     "Delete", 
+                                     "Categoria", 
+                                     new { id = @categoriaModel.Id, descricao = @categoriaModel.Descricao }, 
+                                     new { @class="btn btn-primary " } )
                 </td>
             </tr>
         }

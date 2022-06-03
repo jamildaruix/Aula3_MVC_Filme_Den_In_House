@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Aula3_MVC_Filme.Models.FilmeCategoriaViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Novo Registro</a>
+</p>
+
+@await Html.PartialAsync("_IndexPartialViewTable", @Model)
+
+<br />
+
+<div>
+    <h1>Chamar Via Controler</h1>
+    @Html.ActionLink("Teste", "DeletarPartialView")
+
+    <br />
+    <br />
+    <input 
+        type="button"
+        value="Partial View na Controller"
+        class="btn btn-primary"
+        onclick="buscarPartialViewNaController();" />
+    
+    <br />
+    <div id="definicaoArquitetura"></div>
+</div>
+
+<script type="text/javascript">
+
+    function buscarPartialViewNaController() {
+        $.ajax(
+        {
+            type: 'GET',
+            url: '/Filme/DeletarPartialView',
+            success: function (data) {
+                $('#definicaoArquitetura').html(data);
+            }
+        });
+    }
+
+</script>

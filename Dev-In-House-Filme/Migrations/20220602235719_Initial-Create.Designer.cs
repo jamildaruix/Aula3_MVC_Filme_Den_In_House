@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aula3_MVC_Filme.Migrations
 {
     [DbContext(typeof(FilmeDbContext))]
-    [Migration("20220601225604_Criando-Migration-Inicial")]
-    partial class CriandoMigrationInicial
+    [Migration("20220602235719_Initial-Create")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,9 @@ namespace Aula3_MVC_Filme.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
@@ -66,12 +69,9 @@ namespace Aula3_MVC_Filme.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("FK_Filme_Categoria")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("FK_Filme_Categoria");
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Filme");
                 });
@@ -80,7 +80,7 @@ namespace Aula3_MVC_Filme.Migrations
                 {
                     b.HasOne("Aula3_MVC_Filme.Models.CategoriaModel", "Categoria")
                         .WithMany()
-                        .HasForeignKey("FK_Filme_Categoria")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

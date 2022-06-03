@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Aula3_MVC_Filme.Models.FilmeCategoriaViewModel>
+
+<div>
+    <h4>FilmeCategoriaViewModel</h4>
+    <hr />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>
+            <th>
+                Detalhes da Categoria
+            </th>
+        </tr>
+        <tbody>
+            @foreach (var filmeModel in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => filmeModel.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => filmeModel.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => filmeModel.DataCadastro)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(model => filmeModel.CategoriaId)
+                        @Html.DisplayFor(model => filmeModel.DetalheCategoria)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

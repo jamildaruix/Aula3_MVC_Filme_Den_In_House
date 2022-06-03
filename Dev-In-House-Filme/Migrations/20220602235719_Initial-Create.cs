@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Aula3_MVC_Filme.Migrations
 {
-    public partial class CriandoMigrationInicial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,23 +32,23 @@ namespace Aula3_MVC_Filme.Migrations
                     Descricao = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
-                    FK_Filme_Categoria = table.Column<int>(type: "int", nullable: false)
+                    CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Filme", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Filme_Categoria_FK_Filme_Categoria",
-                        column: x => x.FK_Filme_Categoria,
+                        name: "FK_Filme_Categoria_CategoriaId",
+                        column: x => x.CategoriaId,
                         principalTable: "Categoria",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Filme_FK_Filme_Categoria",
+                name: "IX_Filme_CategoriaId",
                 table: "Filme",
-                column: "FK_Filme_Categoria");
+                column: "CategoriaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
